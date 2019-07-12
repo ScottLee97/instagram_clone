@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'homepage.dart';
+import 'searchpage.dart';
 
 void main() => runApp(MyApp());
 
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: TabBarView(children: [
             homePage(),
-            Center(child: Text('search')),
+            searchPage(),
             Center(child: Text('post')),
             Center(child: Text('activities')),
             Center(child: Text('profile')),

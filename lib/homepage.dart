@@ -75,7 +75,7 @@ Widget getUserPost() {
   );
 }
 
-class getPost extends StatelessWidget {
+class getPost extends StatefulWidget {
   getPost(
       {this.profilePicture, this.name, this.photo, this.caption, this.likes});
 
@@ -84,6 +84,14 @@ class getPost extends StatelessWidget {
   final photo;
   final caption;
   final likes;
+  @override
+  _getPostState createState() => _getPostState();
+}
+
+class _getPostState extends State<getPost> {
+  Color LikeColor;
+  bool hasLike = false;
+  bool like;
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +105,15 @@ class getPost extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(6.0),
                   child: CircleAvatar(
-                    backgroundImage: ExactAssetImage('$profilePicture'),
+                    backgroundImage:
+                        ExactAssetImage('${widget.profilePicture}'),
                     maxRadius: 25,
                   ),
                 ),
               ),
               Container(
                 child: Text(
-                  '$name',
+                  '${widget.name}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -119,7 +128,7 @@ class getPost extends StatelessWidget {
           width: 420,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('$photo'),
+              image: AssetImage('${widget.photo}'),
               fit: BoxFit.cover,
             ),
           ),
@@ -130,7 +139,18 @@ class getPost extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 15.0),
               child: Container(
-                child: Icon(MdiIcons.heartOutline),
+                child: GestureDetector(
+                  onTap: () {
+//                    setState:
+//                    () {
+//                      hasLike = hasLike ? false : true;
+//                    };
+                  },
+                  child: Icon(
+                    MdiIcons.heartOutline,
+                    color: hasLike ? Colors.black : Colors.red,
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -150,12 +170,12 @@ class getPost extends StatelessWidget {
         SizedBox(height: 15),
         Padding(
           padding: EdgeInsets.only(left: 10.0),
-          child: Container(child: Text('$likes likes')),
+          child: Container(child: Text('${widget.likes} likes')),
         ),
         SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
-          child: Container(child: Text('$caption')),
+          child: Container(child: Text('${widget.caption}')),
         ),
         SizedBox(height: 40),
       ],
