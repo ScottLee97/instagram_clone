@@ -90,7 +90,7 @@ class getPost extends StatefulWidget {
 
 class _getPostState extends State<getPost> {
   Color LikeColor;
-  bool hasLike = false;
+  bool hasLike = true;
   bool like;
 
   @override
